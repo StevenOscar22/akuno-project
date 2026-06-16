@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  password     String
+  company_name String
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+  
+  accounts     Account[]
+  journals     Journal[]
+}
+
+enum AccountType {
+  ASSET
+  LIABILITY
+  EQUITY
+  REVENUE
+  EXPENSE
+}
+
+model Account {
+  id         Int         @id @default(autoincrement())
+  userId     Int
+  code       String
+  name       String
+  type       AccountType
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  journalDetails JournalDetail[]
+
+  @@unique([userId, code]) // Account code must be unique per user/company
+}
+
+model Journal {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  date        DateTime
+  description String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  journalDetails JournalDetail[]
+}
+
+model JournalDetail {
+  id         Int      @id @default(autoincrement())
+  journalId  Int
+  accountId  Int
+  debit      Decimal  @default(0) @db.Decimal(15, 2)
+  credit     Decimal  @default(0) @db.Decimal(15, 2)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  journal Journal @relation(fields: [journalId], references: [id], onDelete: Cascade)
+  account Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+}

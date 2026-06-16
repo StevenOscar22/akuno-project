@@ -1,0 +1,24 @@
+- `[x]` **Fase 1: Setup & Database (Fondasi)**
+  - `[x]` Verifikasi struktur project React (Vite) dan Node.js (Express).
+  - `[x]` Setup Prisma ORM dan koneksi ke database MySQL (`akuno`).
+  - `[x]` Merancang skema database (Users, Accounts, Journals, JournalDetails).
+  - `[x]` Menjalankan migrasi database perdana.
+- `[ ]` **Fase 2: Autentikasi & Master Data**
+  - `[ ]` Implementasi NextAuth untuk login/register (Multi-tenant).
+  - `[ ]` Logika pembuatan *template* akun default saat user baru mendaftar.
+  - `[ ]` CRUD (Create, Read, Update, Delete) untuk Bagan Akun (Chart of Accounts).
+- [x] Phase 1: Setup & Database Migration
+- [x] Download dan integrasikan UI dari Stitch (Landing Page, Register, Login)
+- [x] Phase 2: Implementasi Frontend (Berdasarkan Stitch HTML)
+  - [x] Tambahkan animasi Locomotive Scroll di Landing Page
+  - [x] Buat shared component `AppLayout.tsx` (Sidebar & Header)
+  - [x] Buat halaman Jurnal Umum (`Dashboard.tsx`)
+  - [x] Buat halaman Buku Besar (`BukuBesar.tsx`)
+  - [x] Buat halaman Neraca Saldo (`NeracaSaldo.tsx`)
+  - [x] Buat halaman Neraca Lajur (`NeracaLajur.tsx`)
+  - [x] Buat halaman Jurnal Penyesuaian (`JurnalPenyesuaian.tsx`)
+  - [x] Buat halaman Laporan Keuangan (`LaporanKeuangan.tsx`)
+  - [x] Konfigurasi Routing di `App.tsx`
+- [ ] Phase 3: Implementasi Backend & API (Ditunda)
+- `[ ]` **Fase 6: UI/UX & Polishing**
+  - `[ ]` Styling komponen agar modern, responsif, dan mudah digunakan (Glassmorphism, animasi mikro, dsb).
